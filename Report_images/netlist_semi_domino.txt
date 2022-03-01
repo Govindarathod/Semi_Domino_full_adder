@@ -1,0 +1,90 @@
+*  Generated for: PrimeSim
+*  Design library name: semi_domino
+*  Design cell name: full_adder_tb
+*  Design view name: schematic
+.lib 'saed32nm.lib' TT
+
+*Custom Compiler Version S-2021.09
+*Tue Mar  1 06:24:52 2022
+
+.global gnd!
+********************************************************************************
+* Library          : semi_domino
+* Cell             : full_adder
+* View             : schematic
+* View Search List : hspice hspiceD schematic spice veriloga
+* View Stop List   : hspice hspiceD
+********************************************************************************
+.subckt full_adder a b c carry clk gnd_1 sum vdd
+xm14 sum net150 vdd vdd p105 w=0.1u l=0.03u nf=1 m=1
+xm13 net150 sum vdd vdd p105 w=0.1u l=0.03u nf=1 m=1
+xm12 net150 clk vdd vdd p105 w=0.1u l=0.03u nf=1 m=1
+xm6 carry net164 vdd vdd p105 w=0.1u l=0.03u nf=1 m=1
+xm5 net164 carry vdd vdd p105 w=0.1u l=0.03u nf=1 m=1
+xm0 net164 clk vdd vdd p105 w=0.1u l=0.03u nf=1 m=1
+xm26 net165 a net166 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm25 net181 clk gnd_1 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm24 net144 clk gnd_1 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm23 net150 net181 net144 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm22 sum net150 net181 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm21 net177 c net181 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm20 net178 b net177 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm19 net150 a net178 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm18 net174 c net181 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm17 net174 b net181 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm16 net174 a net181 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm15 net150 net164 net174 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm11 net126 clk gnd_1 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm10 net164 net166 net126 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm9 carry net164 net166 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm8 net127 b net166 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm7 net164 a net127 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm4 net166 clk gnd_1 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm3 net165 b net166 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+xm1 net164 c net165 gnd_1 n105 w=0.1u l=0.03u nf=1 m=1
+.ends full_adder
+
+********************************************************************************
+* Library          : semi_domino
+* Cell             : full_adder_tb
+* View             : schematic
+* View Search List : hspice hspiceD schematic spice veriloga
+* View Stop List   : hspice hspiceD
+********************************************************************************
+xi0 a b c carry clk gnd! sum net10 full_adder
+v1 net10 gnd! dc=1.8
+c16 sum gnd! c=1p
+c4 carry gnd! c=1p
+v33 a gnd! dc=0 pulse ( 1.8 0 0 0.1u 0.1u 8u 16u )
+v32 b gnd! dc=0 pulse ( 1.8 0 0 0.1u 0.1u 4u 8u )
+v31 c gnd! dc=0 pulse ( 1.8 0 0 0.1u 0.1u 2u 4u )
+v30 clk gnd! dc=0 pulse ( 1.8 0 0 0.1u 0.1u 1u 2u )
+
+
+
+
+
+
+
+
+.tran '1u' '20u' name=tran
+
+.option primesim_remove_probe_prefix = 0
+.probe v(*) i(*) level=1
+.probe tran v(a) v(b) v(c) v(carry) v(clk) v(sum)
+
+.temp 25
+
+
+
+.option primesim_output=wdf
+
+
+.option parhier = LOCAL
+
+
+
+
+
+
+.end
